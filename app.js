@@ -1,29 +1,16 @@
 const express = require("express");
 require("colors");
 
-const PORT = 3000;
+const PORT = 3013;
 
-const app = express();
+const router = express.Router();
 
-app.use((req, res, next) => {
-  console.log("Наше проміжне ПЗ");
-  next();
+router.get("/", (req, res) => {
+  res.send("Main route");
 });
 
-app.get("/", (request, response) => {
-  response.send("Hello world!");
-});
-
-app.get("/contact", (request, response) => {
-  response.send(`<h1>Contact Page</h1>`);
-});
-
-app.get("/contact/:id", (request, response) => {
-  response.send(
-    `<h1>Contact Page, id=${request.params.id}, query='${JSON.stringify(
-      request.query
-    )}'</h1>`
-  );
+router.get("/about", (req, res) => {
+  res.send("About ");
 });
 
 app.listen(PORT, () => {
